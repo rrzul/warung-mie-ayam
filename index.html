@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mie Ayam Bu Ningrum - Nikmati mie ayam terbaik dengan harga terjangkau!">
+    <title>Mie Ayam Bu Ningrum</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('unduhan.jpg'); /* Gambar Header */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            padding-top: 150px;
+        }
+
+        header h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 24px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ff5722;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: white;
+            font-size: 18px;
+            margin: 0 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fdd835;
+        }
+
+        /* Produk Section */
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 22px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #ff5722;
+        }
+
+        .btn-primary {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e64a19;
+        }
+
+        /* Keranjang Section */
+        .cart {
+            background-color: white;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .cart-summary {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .payment-section button {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .payment-section button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .product-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            header p {
+                font-size: 20px;
+            }
+
+            nav a {
+                padding: 8px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Mie Ayam Bu Ningrum</h1>
+        <p>Rasakan Mie Ayam Terlezat di Kota Ini!</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Beranda</a>
+        <a href="#products">Produk</a>
+        <a href="#cart" onclick="showCart()">Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="#contact">Kontak</a>
+    </nav>
+
+    <!-- Produk Section -->
+    <section id="products" class="product-grid">
+        <div class="product-card">
+            <img src="unduhan.jpg" alt="Mie Ayam Spesial">
+            <h3>Mie Ayam Spesial</h3>
+            <div class="price">Rp 5.000</div>
+            <button class="btn-primary" onclick="addToCart('Mie Ayam Spesial', 5000)">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+            <img src="pedas.jpg" alt="Mie Ayam Pedas">
+            <h3>Mie Ayam Pedas</h3>
+            <div class="price">Rp 12.000</div>
+            <button class="btn-primary" onclick="addToCart('Mie Ayam Pedas', 12000)">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+            <img src="mi besar.jpg" alt="Mie Ayam Porsi Besar">
+            <h3>Mie Ayam Porsi Besar</h3>
+            <div class="price">Rp 15.000</div>
+            <button class="btn-primary" onclick="addToCart('Mie Ayam Porsi Besar', 15000)">Tambah ke Keranjang</button>
+        </div>
+    </section>
+
+    <!-- Keranjang Section -->
+    <section id="cart" class="cart" style="display:none;">
+        <h2>Keranjang Belanja</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Produk akan ditampilkan di sini -->
+        </div>
+        <div class="cart-summary" id="cart-summary">
+            <!-- Ringkasan Total Belanja -->
+        </div>
+        <button class="btn-primary" onclick="showPaymentSection()">Lanjutkan ke Pembayaran</button>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="payment-section">
+        <h2>Masukkan Jumlah Uang yang Dibayar</h2>
+        <input type="number" id="amount-paid" placeholder="Jumlah Uang" required>
+        <button onclick="processPayment()">Bayar</button>
+        <div id="change-section" style="display:none;">
+            <h3>Kembalian: Rp <span id="change-amount"></span></h3>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mie Ayam Bu Ningrum | Semua hak cipta dilindungi</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let totalAmount = 0;
+
+        // Menambahkan produk ke keranjang
+        function addToCart(name, price) {
+            cart.push({name: name, price: price, quantity: 1});
+            totalAmount += price;
+            updateCart();
+        }
+
+        // Memperbarui tampilan keranjang
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartSummary = document.getElementById('cart-summary');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name} (x${item.quantity})</span>
+                        <span>Rp ${item.price * item.quantity}</span>
+                    </div>
+                `;
+            });
+            cartSummary.innerHTML = `Total Belanja: Rp ${totalAmount}`;
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        // Menampilkan keranjang
+        function showCart() {
+            document.getElementById('cart').style.display = 'block';
+            document.getElementById('payment').style.display = 'none';
+        }
+
+        // Menampilkan form pembayaran
+        function showPaymentSection() {
+            document.getElementById('cart').style.display = 'none';
+            document.getElementById('payment').style.display = 'block';
+        }
+
+        // Memproses pembayaran
+        function processPayment() {
+            const amountPaid = document.getElementById('amount-paid').value;
+            if (amountPaid >= totalAmount) {
+                const change = amountPaid - totalAmount;
+                document.getElementById('change-section').style.display = 'block';
+                document.getElementById('change-amount').textContent = change;
+            } else {
+                alert("Uang yang dibayar kurang!");
+            }
+        }
+    </script>
+
+</body>
+</html>
